@@ -27,7 +27,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/editor.css" rel="stylesheet">
-    <script src="creator.js"></script>
+    <script src="js/creator.js"></script>
 
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -42,17 +42,20 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-9 col-lg-9 col-xs-0">
+            <div class="col-md-8 col-lg-8 col-xs-12">
                 <img id="reddit-logo" src="img/reddit-logo.png" alt="reddit alien">
 
             </div>
-            <div class="col-md-3 col-lg-3 col-xs-0">
+            <div class="col-md-4 col-lg-4 col-xs-12" id="login">
                 <div id="login-left">
                     <input type="text" class="form-control" placeholder="username" id="username">
                     <br />
                     <input type="password" class="form-control" placeholder="password" id="password">
-                </div id="login-right">
-                <button type="button" class="btn btn-default">Login</button>
+                </div>
+                <div id="login-right">
+                    <button type="button" class="btn btn-primary btn-sm">Login</button>
+                    <button type="button" class="btn btn-default btn-sm">Register</button>
+                </div>
             </div>
         </div>
         <div class="row">
@@ -91,7 +94,7 @@
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
-                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">all</a>
                             </li>
@@ -144,29 +147,195 @@
 
         <div class="row">
             <div class="col-md-9 col-lg-9 col-xs-9">
-                link
+                <h1>To do:</h1>
+                <h3>{{ user }} </h3>
+                <ol>
+                  <li>setup posts table</li>
+                  <li>setup user table</li>
+                  <li>retrieve posts from db</li>
+                  <li>authenticate user</li>
+                  <li>setup links as table</li>
+                  <li>populate table from db</li>
+                  <li>sort table based on links</li>
+                  <li></li>
+                </ol>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-3" id="submission">
-                <button type="button" class="btn btn-primary">Submit a link</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#link-modal">Submit a link</button>
                 <br>
-                <button type="button" class="btn btn-primary">Submit a text post</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#textPost-modal">Submit a text post</button>
             </div>
         </div>
         <div class="row">
             <div class="col-md-10 col-lg-10 col-xs-10 reddit-link">
                 <a href="http://www.bbc.com/news/health-26987653">A new treatment for hepatitis C "cured" 90% of patients with the infection in 12 weeks, scientists said: The study is a "major breakthrough" and marks a "turning point" in hepatitis C treatment, said experts</a>
+                <div></div>
+                <div class="details submission">submitted 5 hours ago by <a href="reddit.com/u/user">user</a> to <a href="reddit.com/r/subreddit">subreddit</a>
+                </div>
+                <div class="details comments">109234 comments -></div>
             </div>
             <div class="col-md-2 col-lg-2 col-xs-2 ">
                 <div class="vote">
-                    <span class="glyphicon glyphicon-arrow-up arrow"></span>                    
+                    <span class="glyphicon glyphicon-arrow-up arrow"></span>
                     <span class="count">10923</span>
                     <span class="glyphicon glyphicon-arrow-down arrow"></span>
                 </div>
             </div>
         </div>
+        <!-- /.row -->
 
+        <div class="row">
+            <div class="col-md-10 col-lg-10 col-xs-10 reddit-link">
+                <a href="http://www.bbc.com/news/health-26987653">A new treatment for hepatitis C "cured" 90% of patients with the infection in 12 weeks, scientists said: The study is a "major breakthrough" and marks a "turning point" in hepatitis C treatment, said experts</a>
+                <div></div>
+                <div class="details submission">submitted 5 hours ago by <a href="reddit.com/u/user">user</a> to <a href="reddit.com/r/subreddit">subreddit</a>
+                </div>
+                <div class="details comments">109234 comments -></div>
+            </div>
+            <div class="col-md-2 col-lg-2 col-xs-2 ">
+                <div class="vote">
+                    <span class="glyphicon glyphicon-arrow-up arrow"></span>
+                    <span class="count">10923</span>
+                    <span class="glyphicon glyphicon-arrow-down arrow"></span>
+                </div>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <div class="row footer">
+            <div class="col-lg-3 col-md-3 col-xs-12 footerColumn">
+                <span class="footerTitle">about</span>
+                <ul class="footerList">
+                    <li><a href="#">blog</a>
+                    </li>
+                    <li><a href="#">about</a>
+                    </li>
+                    <li><a href="#">team</a>
+                    </li>
+                    <li><a href="#">source</a> code</li>
+                    <li><a href="#">advertise</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 footerColumn">
+                <span class="footerTitle">help</span>
+                <ul class="footerList">
+                    <li><a href="#">wiki</a>
+                    </li>
+                    <li><a href="#">FAQ</a>
+                    </li>
+                    <li><a href="#">reddicate</a>
+                    </li>
+                    <li><a href="#">rules</a>
+                    </li>
+                    <li><a href="#">contact</a> us</li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 footerColumn">
+                <span class="footerTitle">tools</span>
+                <ul class="footerList">
+                    <li><a href="#">mobile</a>
+                    </li>
+                    <li><a href="#">buttons</a>
+                    </li>
+                    <li><a href="#">widget</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-3 col-md-3 col-xs-12 footerColumn">
+                <span class="footerTitle">
+                    <3</span>
+                        <ul class="footerList">
+                            <li><a href="#">reddit gold</a>
+                            </li>
+                            <li>
+                                <a href="#"></a>store</li>
+                            </li>
+                            <li>
+                                <a href="#"></a>redditgifts</li>
+                            </li>
+                            <li>
+                                <a href="#"></a>reddit.tv</li>
+                            </li>
+                            <li>
+                                <a href="#"></a>radio</li>reddit</li>
+                        </ul>
+            </div>
+        </div>
+        <!-- /.footer -->
+        <div class="row footer">
+            <div class="col-lg-12 col-md-12 col-xs-12">
+                <span class="legal">Use of this site constitutes acceptance of our User Agreement and Privacy Policy. © 2014 reddit inc. All rights reserved.
+                    <br />REDDIT and the ALIEN Logo are registered trademarks of reddit inc.</span>
+            </div>
+        </div>
     </div>
     <!-- /container -->
+
+
+    <!-- submit a link modal -->
+    <div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" class=".form-horizontal" role="form" >
+                    <div class="form-group">
+                         <label for="title-link">Title</label>
+                        <input class="form-control" type="text" placeholder="title-link" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="url">URL</label>
+                        <input class="form-control" type="text" placeholder="url" id="url">
+                    </div>
+                    <div class="form-group">
+                        <label for="subreddit-link">Subreddit</label>
+                        <input class="form-control" type="text" placeholder="subreddit" id="subreddit-link">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- submit a text post modal -->
+    <div class="modal fade" id="textPost-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="" class=".form-horizontal" role="form" >
+                    <div class="form-group">
+                         <label for="title-text">Title</label>
+                        <input class="form-control" type="text" placeholder="title-text" id="title">
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Text</label>
+                        <input class="form-control" type="text" placeholder="text" id="text">
+                    </div>
+                    <div class="form-group">
+                        <label for="subreddit-text">Subreddit</label>
+                        <input class="form-control" type="text" placeholder="subreddit" id="subreddit-text">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 

@@ -15,19 +15,46 @@ body {
 [class*="col-"] {
     padding-top: 5px;
     padding-bottom: 5px;
-    background-color: #eee;
-    background-color: rgba(86,61,124,.15);
-    border: 1px solid #ddd;
-    border: 1px solid rgba(86,61,124,.2);
+    /*background-color: #eee;*/
+    /*background-color: rgba(86,61,124,.15);*/
+    /*border: 1px solid #ddd;*/
+    /*border: 1px solid rgba(86,61,124,.2);*/
 }
 
 #reddit-logo {
     width: 50%;
     height: auto;
 }
+#login {
+    margin-bottom: 20px;
+}
+
+#login-left {
+    width: 50%;
+    float:left;
+    /*margin-right: 10px;*/
+}
+
+#login-right {
+    margin-left: 10px;
+    width: 45%;
+    float:left;
+}
+
+#login-right button {
+    display: block;
+    width: 100%;
+    height: 35px;
+    padding: 4px 6px;
+    margin-bottom: 19px;
+}
+
+#submission button {
+    margin-bottom: 10px;
+}
 
 nav {
-    font-size: 90%;
+    font-size: 100%;
 }
 
 #sortnav {
@@ -52,9 +79,23 @@ nav {
     padding-top: 1em;
     min-height: 3em;
     vertical-align: middle;
-    
-
 }
+
+.reddit-link {
+    text-align:justify;
+    margin-bottom: 10px;
+    border-left: 2px solid red;
+}
+
+.reddit-link:hover {
+    background-color: #eee;
+}
+
+.reddit-link a:hover{
+    color: blue;
+    text-decoration: none;
+}
+
 
 .arrow {
     float: right;
@@ -65,4 +106,70 @@ nav {
     float:right;
     min-width: 6em;
     text-align: center;
+}
+
+.details{
+    font-size: 75%;
+}
+
+.submission {
+    float:left;
+}
+
+.comments {
+    float:right;
+}
+
+.comments:after{
+    clear:both;
+}
+
+.footer {
+    background-color: #1b1b1b;
+    background-image: -moz-linear-gradient(top, #222222, #111111);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#222222), to(#111111));
+    background-image: -webkit-linear-gradient(top, #222222, #111111);
+    background-image: -o-linear-gradient(top, #222222, #111111);
+    background-image: linear-gradient(to bottom, #222222, #111111);
+    background-repeat: repeat-x;
+    border-color: #252525;
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff111111', GradientType=0);
+    color: #999999;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.footer a {
+    color: #999999;
+}
+
+.footer a:hover {
+    text-decoration: none;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    color: #ffffff;
+}
+
+.footerTitle{
+    display:block;
+    width:100px;
+    margin: 0 auto;
+    font-size: 120%;
+    margin-bottom: .3em;
+}
+
+.footerList {
+    list-style-type: none;
+}
+
+.legal {
+    text-align: center;
+    display:block;
+    width:100%;
+    margin:0 auto;
+    font-size: 70%;
+}
+
+@media all and (max-width: 600px) {
+  #sortnav {
+    display:none;
+  }
 }
