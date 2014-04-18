@@ -170,6 +170,9 @@ nav {
 
 @media all and (max-width: 600px) {
   #sortnav {
-    display:none;
+    margin-top: 10px;
+    font-size: 80%;
+    min-width: 300px;
+    
   }
 }

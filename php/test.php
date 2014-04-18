@@ -1,10 +1,9 @@
 <?php
 
-$input = $_POST["foo"];
-echo $input;
-
-
-
+$sort = $_POST["sort"];
+$subreddit = $_POST["subreddit"];
+echo $sort;
+echo $subreddit;
 
 // echo "bar"
 ?>

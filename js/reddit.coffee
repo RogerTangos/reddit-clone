@@ -1,11 +1,13 @@
 foo = null;
 
 
-fetchTest = ->
+fetchTest = (query)->
+	console.log query["subreddit"]
+	console.log query["sort"]
 	$.ajax({
 	  type: "POST",
 	  url: 'php/test.php',
-	  data: {"foo":"narf"} 
+	  data: {"subreddit": query["subreddit"], "sort": query["sort"]},
 	  	# {"subreddit": order.subreddit, "sort": order.sort},
 	  success: (data)->
 	  	console.log data
@@ -15,14 +17,14 @@ fetchTest = ->
 
 
 fetchPosts = (query) ->
-	# console.log query.subreddit
+	console.log "fetchPosts called"
 	$.ajax({
 	  type: "POST",
 	  url: 'php/retrievePosts.php',
-	  data: {"subreddit": query.subreddit, "sort": query.sort},
-
+	  data: {"subreddit": query["subreddit"], "sort": query["sort"]},
 	  success: (data)->
-	  	# console.log data
+	  	console.log "posts received from db"
+	  	console.log data
 	  	displayPosts(data)
 	  dataType: 'json'
 	});
@@ -49,7 +51,9 @@ displayPosts = (data) ->
 		                <div></div>
 		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>
 		                </div>
-		                <div class='details comments'>109234 comments -></div>
+		                <div class='details comments'>" + 
+		                	Math.floor(Math.random()*100000) + "
+		                	 comments -></div>
 		            </div>
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
@@ -67,7 +71,9 @@ displayPosts = (data) ->
 		               "<div></div>
 		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>
 		                </div>
-		                <div class='details comments'>109234 comments -></div>
+		                <div class='details comments'> " +
+		                Math.floor(Math.random()*100000) + "
+		                 comments -></div>
 		            </div>
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
@@ -87,38 +93,26 @@ displayPosts = (data) ->
 bindTabs = ->
 	console.log 'bindTabs called'
 	$('#hot').click ->
-		$(".postrow").fadeOut(300, ->
-			$(".postrow").remove()
-			fetchPosts({sort:"top", subreddit:"all"})
-			)
+		$(".postrow").remove()
+		fetchPosts({"sort":"top", "subreddit":"all"})	
 		
 	$('#new').click ->
-		$(".postrow").fadeOut(300, ->
-			$(".postrow").remove()
-			fetchPosts({sort:"new", subreddit:"all"})
-			)
-
-	$('#controversial').click ->
-		$(".postrow").fadeOut(300, ->
-			$(".postrow").remove()
-			fetchPosts({sort:"controversial", subreddit:"all"})
-			)
-
-	$('#top').click ->
-		$(".postrow").fadeOut(300, ->
-			$(".postrow").remove()
-			fetchPosts({sort:"top", subreddit:"all"})
-			)
-
-
+		$(".postrow").remove()
+		fetchPosts({"sort":"new", "subreddit":"all"})
 		
 
+	$('#controversial').click ->
+		$(".postrow").remove()
+		fetchPosts({"sort":"controversial", "subreddit":"all"})
 
+	$('#top').click ->
+		$(".postrow").remove()
+		fetchPosts({"sort":"top", "subreddit":"all"})
 
 
 $(document).ready ->
-	console.log "working"
-	fetchPosts({sort:"top", subreddit:"all"})
+	$(".postrow").remove()
+	fetchPosts({"sort":"top", "subreddit":"all"})
 	bindTabs()
 
 	

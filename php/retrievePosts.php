@@ -9,7 +9,7 @@ echo "A connection error occurred. Please try again later."; exit;
 $sort = $_POST["sort"];
 $subreddit = $_POST["subreddit"];
 
-$sort = "top";
+// $sort = "top";
 // $subreddit = "all";
 
 $subreddit = $mysqliObj->real_escape_string($subreddit);

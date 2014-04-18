@@ -3,12 +3,15 @@ var bindTabs, displayPosts, fetchPosts, fetchTest, foo;
 
 foo = null;
 
-fetchTest = function() {
+fetchTest = function(query) {
+  console.log(query["subreddit"]);
+  console.log(query["sort"]);
   return $.ajax({
     type: "POST",
     url: 'php/test.php',
     data: {
-      "foo": "narf"
+      "subreddit": query["subreddit"],
+      "sort": query["sort"]
     },
     success: function(data) {
       return console.log(data);
@@ -17,14 +20,17 @@ fetchTest = function() {
 };
 
 fetchPosts = function(query) {
+  console.log("fetchPosts called");
   return $.ajax({
     type: "POST",
     url: 'php/retrievePosts.php',
     data: {
-      "subreddit": query.subreddit,
-      "sort": query.sort
+      "subreddit": query["subreddit"],
+      "sort": query["sort"]
     },
     success: function(data) {
+      console.log("posts received from db");
+      console.log(data);
       return displayPosts(data);
     },
     dataType: 'json'
@@ -46,9 +52,9 @@ displayPosts = function(data) {
     username = post['username'];
     row = null;
     if (type === "1") {
-      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>		                <a href='" + url + "'>" + title + "</a>		                <div></div>		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>		                </div>		                <div class='details comments'>109234 comments -></div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow'></span>		                    <span class='count'>" + (upvote - downvote) + " </span>		                    <span class='glyphicon glyphicon-arrow-down arrow'></span>		                </div>		            </div>		        </div>";
+      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>		                <a href='" + url + "'>" + title + "</a>		                <div></div>		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>		                </div>		                <div class='details comments'>" + Math.floor(Math.random() * 100000) + "		                	 comments -></div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow'></span>		                    <span class='count'>" + (upvote - downvote) + " </span>		                    <span class='glyphicon glyphicon-arrow-down arrow'></span>		                </div>		            </div>		        </div>";
     } else if (type === '2') {
-      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>" + title + "<div></div>		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>		                </div>		                <div class='details comments'>109234 comments -></div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow'></span>		                    <span class='count'>" + (upvote - downvote) + " </span>		                    <span class='glyphicon glyphicon-arrow-down arrow'></span>		                </div>		            </div>		        </div>";
+      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>" + title + "<div></div>		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>		                </div>		                <div class='details comments'> " + Math.floor(Math.random() * 100000) + "		                 comments -></div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow'></span>		                    <span class='count'>" + (upvote - downvote) + " </span>		                    <span class='glyphicon glyphicon-arrow-down arrow'></span>		                </div>		            </div>		        </div>";
     }
     _results.push($('#todo-row').after(row));
   }
@@ -58,48 +64,40 @@ displayPosts = function(data) {
 bindTabs = function() {
   console.log('bindTabs called');
   $('#hot').click(function() {
-    return $(".postrow").fadeOut(300, function() {
-      $(".postrow").remove();
-      return fetchPosts({
-        sort: "top",
-        subreddit: "all"
-      });
+    $(".postrow").remove();
+    return fetchPosts({
+      "sort": "top",
+      "subreddit": "all"
     });
   });
   $('#new').click(function() {
-    return $(".postrow").fadeOut(300, function() {
-      $(".postrow").remove();
-      return fetchPosts({
-        sort: "new",
-        subreddit: "all"
-      });
+    $(".postrow").remove();
+    return fetchPosts({
+      "sort": "new",
+      "subreddit": "all"
     });
   });
   $('#controversial').click(function() {
-    return $(".postrow").fadeOut(300, function() {
-      $(".postrow").remove();
-      return fetchPosts({
-        sort: "controversial",
-        subreddit: "all"
-      });
+    $(".postrow").remove();
+    return fetchPosts({
+      "sort": "controversial",
+      "subreddit": "all"
     });
   });
   return $('#top').click(function() {
-    return $(".postrow").fadeOut(300, function() {
-      $(".postrow").remove();
-      return fetchPosts({
-        sort: "top",
-        subreddit: "all"
-      });
+    $(".postrow").remove();
+    return fetchPosts({
+      "sort": "top",
+      "subreddit": "all"
     });
   });
 };
 
 $(document).ready(function() {
-  console.log("working");
+  $(".postrow").remove();
   fetchPosts({
-    sort: "top",
-    subreddit: "all"
+    "sort": "top",
+    "subreddit": "all"
   });
   return bindTabs();
 });
