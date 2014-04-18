@@ -15,14 +15,14 @@ fetchTest = ->
 
 
 fetchPosts = (query) ->
-	console.log query.subreddit
+	# console.log query.subreddit
 	$.ajax({
 	  type: "POST",
 	  url: 'php/retrievePosts.php',
 	  data: {"subreddit": query.subreddit, "sort": query.sort},
 
 	  success: (data)->
-	  	console.log data
+	  	# console.log data
 	  	displayPosts(data)
 	  dataType: 'json'
 	});
@@ -84,7 +84,34 @@ displayPosts = (data) ->
 		
 		# console.log row;
 
-clearPosts = ->
+bindTabs = ->
+	console.log 'bindTabs called'
+	$('#hot').click ->
+		$(".postrow").fadeOut(300, ->
+			$(".postrow").remove()
+			fetchPosts({sort:"top", subreddit:"all"})
+			)
+		
+	$('#new').click ->
+		$(".postrow").fadeOut(300, ->
+			$(".postrow").remove()
+			fetchPosts({sort:"new", subreddit:"all"})
+			)
+
+	$('#controversial').click ->
+		$(".postrow").fadeOut(300, ->
+			$(".postrow").remove()
+			fetchPosts({sort:"controversial", subreddit:"all"})
+			)
+
+	$('#top').click ->
+		$(".postrow").fadeOut(300, ->
+			$(".postrow").remove()
+			fetchPosts({sort:"top", subreddit:"all"})
+			)
+
+
+		
 
 
 
@@ -92,4 +119,6 @@ clearPosts = ->
 $(document).ready ->
 	console.log "working"
 	fetchPosts({sort:"top", subreddit:"all"})
+	bindTabs()
+
 	
