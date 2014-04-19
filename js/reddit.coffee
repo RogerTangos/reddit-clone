@@ -111,6 +111,12 @@ vote = (type, id) ->
 		when "upvote" then post.html(total+1)
 		when "downvote" then post.html(total-1)
 
+submitPost = (data) ->
+	title = data["title"]
+	url = data["url"]
+	subreddit = data["subreddit"]
+	type = data["type"]
+
 
 	
 
