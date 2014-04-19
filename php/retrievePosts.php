@@ -32,7 +32,7 @@ if ($sort == "new"){
 };
 
 
-$query1 = "SELECT `url`, `title`, `upvote`, `downvote`, `type`, `time`, `username`, `subreddit` FROM 
+$query1 = "SELECT post.id as `id`, `url`, `title`, `upvote`, `downvote`, `type`, `time`, `username`, `subreddit` FROM 
 	`post` 
 	INNER JOIN `user` on user_id = user.id
 	INNER JOIN `subreddit` on subreddit_id = subreddit.id

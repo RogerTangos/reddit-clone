@@ -87,20 +87,38 @@ nav {
     border-left: 2px solid red;
 }
 
-.reddit-link:hover {
-    background-color: #eee;
-}
 
 .reddit-link a:hover{
-    color: blue;
     text-decoration: none;
 }
 
+.postrow:hover{
+     background-color: #eee;
+}
 
 .arrow {
     float: right;
-    font-size: 150%;
+    font-size: 190%;
+    cursor: pointer;
 }
+
+.glyphicon-arrow-up:hover{
+    color:#FF885C;
+}
+
+.glyphicon-arrow-down:hover {
+    color: #9191FF;
+}
+
+.glyphicon-arrow-up-clicked{
+    color:#FF885C;
+}
+
+.glyphicon-arrow-down-clicked {
+    color: #9191FF;
+}
+
+
 
 .count {
     float:right;
@@ -168,11 +186,25 @@ nav {
     font-size: 70%;
 }
 
+.post-image-container {
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    margin-right: 5px;
+    float:left;
+}
+
+.post-image {
+    width: 90px;
+    /*height: 100%;*/
+}
+
 @media all and (max-width: 600px) {
   #sortnav {
     margin-top: 10px;
     font-size: 80%;
-    min-width: 300px;
-    
+    min-width: 300px;   
   }
+
+
 }

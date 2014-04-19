@@ -142,22 +142,34 @@
         <div class="row" id="todo-row">
             <div class="col-md-9 col-lg-9 col-xs-9">
                 <h1>To do:</h1>
-                <h3>{{ user }} </h3>
+                <h3>{{ user }}</h3>
                 <ol>
-                  <li><del>setup posts table</del></li>
-                  <li><del>setup user table</del></li>
-                  <li><del>retrieve posts from db</del></li>
-                  <li><del>make nicer queries for post, subredit, usernames</del></li>
-                  <li>finish laying out posts - need to record number of comments</li>
-                  <li>ajax sort - figure out why the DOM isn't changing. posts sort.</li>
-                  <li>images next to text</li>
-                  <li>submit a link/text</li>
-                  <li>upvote </li>
-                  <li>load more posts when end is reached</li>
-                  <li>open imgur in modals</li>
-                  <li>authenticate user</li>
+                    <li>
+                        <del>setup posts table</del>
+                    </li>
+                    <li>
+                        <del>setup user table</del>
+                    </li>
+                    <li>
+                        <del>retrieve posts from db</del>
+                    </li>
+                    <li>
+                        <del>make nicer queries for post, subredit, usernames</del>
+                    </li>
+                    <li>
+                        <del>finish laying out posts - need to record number of comments</del>
+                    </li>
+                    <li>
+                        <del>ajax sort - figure out why the DOM isn't changing. posts sort.</del>
+                    </li>
+                    <li>images next to text</li>
+                    <li>submit a link/text</li>
+                    <li>upvote</li>
+                    <li>load more posts when end is reached</li>
+                    <li>open imgur in modals</li>
+                    <li>authenticate user</li>
 
-                  <li></li>
+                    <li></li>
                 </ol>
             </div>
             <div class="col-md-3 col-lg-3 col-xs-3" id="submission">
@@ -186,11 +198,17 @@
 
         <div class="row postrow">
             <div class="col-md-10 col-lg-10 col-xs-10 reddit-link">
-                <a href="http://www.bbc.com/news/health-26987653">A new treatment for hepatitis C "cured" 90% of patients with the infection in 12 weeks, scientists said: The study is a "major breakthrough" and marks a "turning point" in hepatitis C treatment, said experts</a>
-                <div></div>
-                <div class="details submission">submitted 5 hours ago by <a href="reddit.com/u/user">user</a> to <a href="reddit.com/r/subreddit">subreddit</a>
+                <div class="post-image-container">
+                    <img class="post-image" src="http://i.imgur.com/Y7nh5Pi.jpg" alt="post image">
                 </div>
-                <div class="details comments">109234 comments -></div>
+                <div "post-text-container">
+                    <a href="http://i.imgur.com/Y7nh5Pi.jpg">A powerful view of the internationality of space exploration: Canadarm (CSA) and Atlantis (NASA) docked near the Columbus module (ESA) on the ISS [4288x2847]</a>
+
+                    <div></div>
+                    <div class="details submission">submitted 5 hours ago by <a href="reddit.com/u/user">user</a> to <a href="reddit.com/r/subreddit">subreddit</a>
+                    </div>
+                    <div class="details comments">109234 comments -></div>
+                </div>
             </div>
             <div class="col-md-2 col-lg-2 col-xs-2 ">
                 <div class="vote">
@@ -282,18 +300,18 @@
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" class=".form-horizontal" role="form" >
-                    <div class="form-group">
-                         <label for="title-link">Title</label>
-                        <input class="form-control" type="text" placeholder="title-link" id="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="url">URL</label>
-                        <input class="form-control" type="text" placeholder="url" id="url">
-                    </div>
-                    <div class="form-group">
-                        <label for="subreddit-link">Subreddit</label>
-                        <input class="form-control" type="text" placeholder="subreddit" id="subreddit-link">
+                    <form action="" class=".form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="title-link">Title</label>
+                            <input class="form-control" type="text" placeholder="title-link" id="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="url">URL</label>
+                            <input class="form-control" type="text" placeholder="url" id="url">
+                        </div>
+                        <div class="form-group">
+                            <label for="subreddit-link">Subreddit</label>
+                            <input class="form-control" type="text" placeholder="subreddit" id="subreddit-link">
                         </div>
                     </form>
                 </div>
@@ -305,7 +323,7 @@
         </div>
     </div>
 
-     <!-- submit a text post modal -->
+    <!-- submit a text post modal -->
     <div class="modal fade" id="textPost-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -314,18 +332,18 @@
                     <h4 class="modal-title" id="myModalLabel">Modal title</h4>
                 </div>
                 <div class="modal-body">
-                    <form action="" class=".form-horizontal" role="form" >
-                    <div class="form-group">
-                         <label for="title-text">Title</label>
-                        <input class="form-control" type="text" placeholder="title-text" id="title">
-                    </div>
-                    <div class="form-group">
-                        <label for="text">Text</label>
-                        <input class="form-control" type="text" placeholder="text" id="text">
-                    </div>
-                    <div class="form-group">
-                        <label for="subreddit-text">Subreddit</label>
-                        <input class="form-control" type="text" placeholder="subreddit" id="subreddit-text">
+                    <form action="" class=".form-horizontal" role="form">
+                        <div class="form-group">
+                            <label for="title-text">Title</label>
+                            <input class="form-control" type="text" placeholder="title-text" id="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Text</label>
+                            <input class="form-control" type="text" placeholder="text" id="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="subreddit-text">Subreddit</label>
+                            <input class="form-control" type="text" placeholder="subreddit" id="subreddit-text">
                         </div>
                     </form>
                 </div>

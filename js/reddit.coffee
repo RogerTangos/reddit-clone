@@ -15,7 +15,6 @@ fetchTest = (query)->
 	  # dataType: 'json'
 	});
 
-
 fetchPosts = (query) ->
 	console.log "fetchPosts called"
 	$.ajax({
@@ -23,16 +22,17 @@ fetchPosts = (query) ->
 	  url: 'php/retrievePosts.php',
 	  data: {"subreddit": query["subreddit"], "sort": query["sort"]},
 	  success: (data)->
-	  	console.log "posts received from db"
-	  	console.log data
+	  	# console.log "posts received from db"
+	  	# console.log data
 	  	displayPosts(data)
+	  	bindArrows()
 	  dataType: 'json'
 	});
 
 displayPosts = (data) ->
 	console.log "displayAll called"
-
 	for post in data
+		id = post['id']
 		title = post['title']
 		url = post['url']
 		subreddit = post['subreddit']
@@ -47,19 +47,25 @@ displayPosts = (data) ->
 			row = 	
 				"<div class='row postrow'>
 		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>
-		                <a href='" + url + "'>" + title + "</a>
-		                <div></div>
-		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>
+		            	<div class='post-image-container'>
+							<img class='post-image' src='"+url+"' alt='post image'>
 		                </div>
-		                <div class='details comments'>" + 
-		                	Math.floor(Math.random()*100000) + "
-		                	 comments -></div>
+		                <div class='post-text-container'>
+		                	<a href='" + url + "'>" + title + "</a>
+						
+		                	<div></div>
+			                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>
+			                </div>
+			                <div class='details comments'>" + 
+			                Math.floor(Math.random()*100000) + "
+			                comments -></div>
+		            	</div>
 		            </div>
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
-		                    <span class='glyphicon glyphicon-arrow-up arrow'></span>
+		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-"+id+"'></span>
 		                    <span class='count'>" + (upvote-downvote) + " </span>
-		                    <span class='glyphicon glyphicon-arrow-down arrow'></span>
+		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-"+id+"'></span>
 		                </div>
 		            </div>
 		        </div>"	
@@ -77,18 +83,24 @@ displayPosts = (data) ->
 		            </div>
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
-		                    <span class='glyphicon glyphicon-arrow-up arrow'></span>
+		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-"+id+"'></span>
 		                    <span class='count'>" + (upvote-downvote) + " </span>
-		                    <span class='glyphicon glyphicon-arrow-down arrow'></span>
+		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-"+id+"'></span>
 		                </div>
 		            </div>
 		        </div>"	
 
 		$('#todo-row').after(row)
 
-
-		
-		# console.log row;
+vote = (type, id) ->
+	$.ajax({
+		type: "POST",
+		url: 'php/vote.php'
+		data: {"id": id, "type":type}
+		success: (data) ->
+			console.log "vote success"
+			console.log data
+		})
 
 bindTabs = ->
 	console.log 'bindTabs called'
@@ -109,10 +121,35 @@ bindTabs = ->
 		$(".postrow").remove()
 		fetchPosts({"sort":"top", "subreddit":"all"})
 
+bindArrows = ->
+	console.log "bindArrows called"
+	$(".glyphicon-arrow-down").click ->
+		$(@).toggleClass("glyphicon-arrow-down-clicked")
+		id = $(@).attr('id').match('[0-9]+')[0]
+		vote("downvote", id)
+
+	
+	$(".glyphicon-arrow-up").click ->
+		# console.log "clicked"
+		$(@).toggleClass("glyphicon-arrow-up-clicked")
+		id = $(@).attr('id').match('[0-9]+')[0]
+		vote("upvote", id)
+
+	return
+
+
+	# $(".glyphicon-arrow-down").toggle(
+	# 	->
+	# 		console.log "toggled on"
+	# 		@.css("color","#9191FF")
+	# 	->
+	# 		console.log "toggled off"
+	# 		@.css("color","black")
+	# 	)
+
 
 $(document).ready ->
+	console.log "document ready"
 	$(".postrow").remove()
 	fetchPosts({"sort":"top", "subreddit":"all"})
 	bindTabs()
-
-	
