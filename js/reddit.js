@@ -52,9 +52,9 @@ displayPosts = function(data) {
     username = post['username'];
     row = null;
     if (type === "1") {
-      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>		            	<div class='post-image-container'>							<img class='post-image' src='" + url + "' alt='post image'>		                </div>		                <div class='post-text-container'>		                	<a href='" + url + "'>" + title + "</a>								                	<div></div>			                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>			                </div>			                <div class='details comments'>" + Math.floor(Math.random() * 100000) + "			                comments -></div>		            	</div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-" + id + "'></span>		                    <span class='count'>" + (upvote - downvote) + " </span>		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-" + id + "'></span>		                </div>		            </div>		        </div>";
+      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>		            	<div class='post-image-container'>							<img class='post-image' src='" + url + "' alt='post image'>		                </div>		                <div class='post-text-container'>		                	<a href='" + url + "'>" + title + "</a>								                	<div></div>			                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>			                </div>			                <div class='details comments'>" + Math.floor(Math.random() * 100000) + "			                comments -></div>		            	</div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-" + id + "'></span>		                    <span class='count' id='post-count-" + id + "'>" + (upvote - downvote) + "</span>		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-" + id + "'></span>		                </div>		            </div>		        </div>";
     } else if (type === '2') {
-      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>" + title + "<div></div>		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>		                </div>		                <div class='details comments'> " + Math.floor(Math.random() * 100000) + "		                 comments -></div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-" + id + "'></span>		                    <span class='count'>" + (upvote - downvote) + " </span>		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-" + id + "'></span>		                </div>		            </div>		        </div>";
+      row = "<div class='row postrow'>		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>" + title + "<div></div>		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>		                </div>		                <div class='details comments'> " + Math.floor(Math.random() * 100000) + "		                 comments -></div>		            </div>		            <div class='col-md-2 col-lg-2 col-xs-2 '>		                <div class='vote'>		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-" + id + "'></span>		                    <span class='count' id='post-count-" + id + "'>" + (upvote - downvote) + "</span>		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-" + id + "'></span>		                </div>		            </div>		        </div>";
     }
     _results.push($('#todo-row').after(row));
   }
@@ -62,7 +62,9 @@ displayPosts = function(data) {
 };
 
 vote = function(type, id) {
-  return $.ajax({
+  var post, total;
+  console.log("vote called");
+  $.ajax({
     type: "POST",
     url: 'php/vote.php',
     data: {
@@ -72,8 +74,17 @@ vote = function(type, id) {
     success: function(data) {
       console.log("vote success");
       return console.log(data);
-    }
+    },
+    dataType: "json"
   });
+  post = $("#post-count-" + id);
+  total = parseFloat(post.html());
+  switch (type) {
+    case "upvote":
+      return post.html(total + 1);
+    case "downvote":
+      return post.html(total - 1);
+  }
 };
 
 bindTabs = function() {

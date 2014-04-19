@@ -64,7 +64,7 @@ displayPosts = (data) ->
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
 		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-"+id+"'></span>
-		                    <span class='count'>" + (upvote-downvote) + " </span>
+		                    <span class='count' id='post-count-"+id+"'>" + (upvote-downvote) + "</span>
 		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-"+id+"'></span>
 		                </div>
 		            </div>
@@ -84,7 +84,7 @@ displayPosts = (data) ->
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
 		                    <span class='glyphicon glyphicon-arrow-up arrow' id='uparrow-"+id+"'></span>
-		                    <span class='count'>" + (upvote-downvote) + " </span>
+		                    <span class='count' id='post-count-"+id+"'>" + (upvote-downvote) + "</span>
 		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-"+id+"'></span>
 		                </div>
 		            </div>
@@ -93,14 +93,28 @@ displayPosts = (data) ->
 		$('#todo-row').after(row)
 
 vote = (type, id) ->
+	console.log "vote called"
 	$.ajax({
 		type: "POST",
-		url: 'php/vote.php'
-		data: {"id": id, "type":type}
+		url: 'php/vote.php',
+		data: {"id": id, "type":type},
 		success: (data) ->
 			console.log "vote success"
-			console.log data
+			console.log data,
+			# console.log $('#post-count'+id)
+		dataType: "json"
 		})
+
+	post = $("#post-count-" + id)
+	total = parseFloat(post.html())
+	switch type
+		when "upvote" then post.html(total+1)
+		when "downvote" then post.html(total-1)
+
+
+	
+
+
 
 bindTabs = ->
 	console.log 'bindTabs called'
@@ -136,16 +150,6 @@ bindArrows = ->
 		vote("upvote", id)
 
 	return
-
-
-	# $(".glyphicon-arrow-down").toggle(
-	# 	->
-	# 		console.log "toggled on"
-	# 		@.css("color","#9191FF")
-	# 	->
-	# 		console.log "toggled off"
-	# 		@.css("color","black")
-	# 	)
 
 
 $(document).ready ->
