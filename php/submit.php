@@ -4,13 +4,19 @@ if (mysqli_connect_errno()){
 echo "A connection error occurred. Please try again later."; exit;
 };
 
-// $title = $mysqliObj->real_escape_string(_POST["title"]);
-// $url = $mysqliObj->real_escape_string(_POST["url"]);
-// $subreddit = $mysqliObj->real_escape_string(_POST["subreddit"]);
-$title = "foo";
-$url = "bar";
-$subreddit = 2;
-$type = 1;
+$title = $_POST["title"];
+$url = $_POST["url"];
+$subreddit = $_POST["subreddit"];
+$type = $_POST["type"];
+
+$subreddit = $mysqliObj->real_escape_string($subreddit);
+$title = $mysqliObj->real_escape_string($title);
+$url = $mysqliObj->real_escape_string($url);
+$type = intval($mysqliObj->real_escape_string($_POST["type"]));
+// $title = "foo";
+// $url = "bar";
+// $subreddit = 2;
+// $type = 1;
 
 
 $subreddit = "funny";

@@ -117,6 +117,16 @@ submitPost = (data) ->
 	subreddit = data["subreddit"]
 	type = data["type"]
 
+	$.ajax({
+		type: "POST",
+		url: "php/submit.php",
+		data: {"title":title, "url":url, 
+		"subreddit":subreddit, "type":type},
+		success: (data) ->
+			console.log "submitPost success"
+			console.log data
+			fetchPosts({"sort":"top", "subreddit":"all"})
+		})	
 
 	
 
