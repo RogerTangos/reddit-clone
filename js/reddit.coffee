@@ -1,9 +1,16 @@
 global_sort = "top"
 global_subreddit = "all"
 global_start = 0
-global_resultNum=10
-global_docHeight=0
+global_resultNum=5
 # foo = null
+
+getDocumentHeight = ->
+	D = document
+	global_docHeight = Math.max(
+		Math.max(D.body.scrollHeight, D.documentElement.scrollHeight), 
+		Math.max(D.body.offsetHeight, D.documentElement.offsetHeight), 
+		Math.max(D.body.clientHeight, D.documentElement.clientHeight)
+	)
 
 fetchTest = (query)->
 	console.log query["subreddit"]
@@ -22,12 +29,12 @@ fetchTest = (query)->
 	  # dataType: 'json'
 	});
 
-fetchPosts = (query) ->
+fetchPosts = (query, fun) ->
 	console.log "fetchPosts called"
 	if !query["start"]
 		query["start"] = 0
 	if !query["resultNum"]
-		query["resultNum"] = 10
+		query["resultNum"] = global_resultNum
 
 	$.ajax({
 	  type: "POST",
@@ -39,9 +46,11 @@ fetchPosts = (query) ->
 	  	"resultNum": query["resultNum"]},
 	  success: (data)->
 	  	# console.log "posts received from db"
-	  	console.log data
+	  	# console.log data
 	  	displayPosts(data)
 	  	bindArrows()
+	  	if fun
+	  		fun()
 	  dataType: 'json'
 	});
 
@@ -110,7 +119,6 @@ displayPosts = (data) ->
 			$(".postrow").last().after(row)
 		else
 			$('#todo-row').after(row)
-
 
 vote = (type, id) ->
 	console.log "vote called"
@@ -231,9 +239,21 @@ bindSubmit = ->
 			"type":2
 			})
 
+bindAutoScroll = ->
+	console.log "autoscroll binding now"
+	$(window).scroll ->
+		if $(window).scrollTop() + $(window).height() == getDocumentHeight()
+			global_start += 5
+			fetchPosts(
+				{"subreddit": global_subreddit
+				"sort":global_sort
+				"start":global_start
+				"resultNum":global_resultNum})
+			console.log "bottom!"
 
 $(document).ready ->
 	# $(".postrow").remove()
-	fetchPosts({"sort":"top", "subreddit":"all"})
+	fetchPosts({"sort":"top", "subreddit":"all"}, -> bindAutoScroll())
 	bindTabs()
 	bindSubmit()
+

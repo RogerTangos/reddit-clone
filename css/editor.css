@@ -205,6 +205,12 @@ nav {
     font-size: 80%;
     min-width: 300px;   
   }
+}
 
+@media all and (max-width: 902px){
+    .count {
+        text-align: right;
+        padding-right: 9px;
+    }
 
 }
