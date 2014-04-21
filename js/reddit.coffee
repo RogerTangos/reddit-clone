@@ -147,7 +147,7 @@ vote = (type, id) ->
 
 submitPost = (data) ->
 	console.log "submit post called"
-	console.log data
+	# console.log data
 	title = data["title"]
 	url = data["url"]
 	subreddit = data["subreddit"]

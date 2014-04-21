@@ -129,7 +129,6 @@ vote = function(type, id) {
 submitPost = function(data) {
   var subreddit, title, type, url;
   console.log("submit post called");
-  console.log(data);
   title = data["title"];
   url = data["url"];
   subreddit = data["subreddit"];
@@ -160,6 +159,7 @@ bindTabs = function() {
     $("#sortnav>li.active").removeClass("active");
     $(this).parent().addClass("active");
     global_sort = "top";
+    global_start = 0;
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
@@ -171,6 +171,7 @@ bindTabs = function() {
     console.log(this);
     $(this).parent().addClass("active");
     global_sort = "new";
+    global_start = 0;
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
@@ -181,6 +182,7 @@ bindTabs = function() {
     $("#sortnav>li.active").removeClass("active");
     $(this).parent().addClass("active");
     global_sort = "controversial";
+    global_start = 0;
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
@@ -191,6 +193,7 @@ bindTabs = function() {
     $("#sortnav>li.active").removeClass("active");
     $(this).parent().addClass("active");
     global_sort = "top";
+    global_start = 0;
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
