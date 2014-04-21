@@ -1,5 +1,6 @@
 global_sort = "top"
 global_subreddit = "all"
+foo = null
 
 fetchTest = (query)->
 	console.log query["subreddit"]
@@ -135,12 +136,19 @@ bindTabs = ->
 	# console.log 'bindTabs called'
 	$('#hot').click ->
 		$(".postrow").remove()
+		$("#sortnav>li.active").removeClass("active")
+		$(@).parent().addClass("active");
 		global_sort = "top"
 		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})	
+
+
 		
 	$('#new').click ->
 		$(".postrow").remove()
+		$("#sortnav>li.active").removeClass("active")
+		console.log @
+		$(@).parent().addClass("active");
 		global_sort = "new"
 		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
@@ -148,12 +156,16 @@ bindTabs = ->
 
 	$('#controversial').click ->
 		$(".postrow").remove()
+		$("#sortnav>li.active").removeClass("active")
+		$(@).parent().addClass("active");
 		global_sort = "controversial"
 		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 	$('#top').click ->
 		$(".postrow").remove()
+		$("#sortnav>li.active").removeClass("active")
+		$(@).parent().addClass("active");
 		global_sort = "top"
 		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
