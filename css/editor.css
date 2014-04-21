@@ -213,4 +213,9 @@ nav {
         padding-right: 9px;
     }
 
+    .footerTitle {
+        text-decoration: underline;
+        margin: inherit;
+        padding-left: 40px;
+    }
 }
