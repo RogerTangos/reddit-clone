@@ -35,6 +35,12 @@ fetchPosts = (query, fun) ->
 		query["start"] = 0
 	if !query["resultNum"]
 		query["resultNum"] = global_resultNum
+	if !query["resultNum"]
+		query["resultNum"] = global_resultNum
+	if !query["subreddit"]
+		query["subreddit"] = global_subreddit
+	if !query["sort"]
+		query["sort"]="top"
 
 	$.ajax({
 	  type: "POST",
@@ -46,7 +52,7 @@ fetchPosts = (query, fun) ->
 	  	"resultNum": query["resultNum"]},
 	  success: (data)->
 	  	# console.log "posts received from db"
-	  	# console.log data
+	  	console.log data
 	  	displayPosts(data)
 	  	bindArrows()
 	  	if fun
@@ -165,7 +171,6 @@ bindTabs = ->
 		$("#sortnav>li.active").removeClass("active")
 		$(@).parent().addClass("active");
 		global_sort = "top"
-		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})	
 
 
@@ -176,7 +181,6 @@ bindTabs = ->
 		console.log @
 		$(@).parent().addClass("active");
 		global_sort = "new"
-		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 	
 
@@ -185,7 +189,6 @@ bindTabs = ->
 		$("#sortnav>li.active").removeClass("active")
 		$(@).parent().addClass("active");
 		global_sort = "controversial"
-		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 	$('#top').click ->
@@ -193,7 +196,6 @@ bindTabs = ->
 		$("#sortnav>li.active").removeClass("active")
 		$(@).parent().addClass("active");
 		global_sort = "top"
-		global_subreddit = "all"
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 bindArrows = ->
@@ -249,7 +251,7 @@ bindAutoScroll = ->
 				"sort":global_sort
 				"start":global_start
 				"resultNum":global_resultNum})
-			console.log "bottom!"
+			# console.log "bottom!"
 
 $(document).ready ->
 	# $(".postrow").remove()

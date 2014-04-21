@@ -24,7 +24,7 @@ $resultNum = intval($mysqliObj->real_escape_string($resultNum));
 if ($subreddit == "all"){
 	$subreddit = "Where 1 = 1";	
 } else {
-	$subreddit = "WHERE subreddit = '$subreddit'";	
+	$subreddit = "WHERE lower(subreddit) = lower('$subreddit')";	
 }
 // echo "<br />$subreddit<br />-------<br />";
 

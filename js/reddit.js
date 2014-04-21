@@ -39,6 +39,15 @@ fetchPosts = function(query, fun) {
   if (!query["resultNum"]) {
     query["resultNum"] = global_resultNum;
   }
+  if (!query["resultNum"]) {
+    query["resultNum"] = global_resultNum;
+  }
+  if (!query["subreddit"]) {
+    query["subreddit"] = global_subreddit;
+  }
+  if (!query["sort"]) {
+    query["sort"] = "top";
+  }
   return $.ajax({
     type: "POST",
     url: 'php/retrievePosts.php',
@@ -49,6 +58,7 @@ fetchPosts = function(query, fun) {
       "resultNum": query["resultNum"]
     },
     success: function(data) {
+      console.log(data);
       displayPosts(data);
       bindArrows();
       if (fun) {
@@ -148,7 +158,6 @@ bindTabs = function() {
     $("#sortnav>li.active").removeClass("active");
     $(this).parent().addClass("active");
     global_sort = "top";
-    global_subreddit = "all";
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
@@ -160,7 +169,6 @@ bindTabs = function() {
     console.log(this);
     $(this).parent().addClass("active");
     global_sort = "new";
-    global_subreddit = "all";
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
@@ -171,7 +179,6 @@ bindTabs = function() {
     $("#sortnav>li.active").removeClass("active");
     $(this).parent().addClass("active");
     global_sort = "controversial";
-    global_subreddit = "all";
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
@@ -182,7 +189,6 @@ bindTabs = function() {
     $("#sortnav>li.active").removeClass("active");
     $(this).parent().addClass("active");
     global_sort = "top";
-    global_subreddit = "all";
     return fetchPosts({
       "sort": global_sort,
       "subreddit": global_subreddit
