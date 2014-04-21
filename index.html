@@ -83,7 +83,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Front</a>
+                        <!-- <a class="navbar-brand" href="#">Front</a> -->
                     </div>
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -91,28 +91,29 @@
                         <ul class="nav navbar-nav">
                             <li class="active"><a href="#">all</a>
                             </li>
-                            <li><a href="#">random</a>
+                            <li><a href="#">AdviceAnimals</a>
                             </li>
-                            <li><a href="#">pics</a>
+                            <li><a href="#">AnimalsBeingJerks</a>
                             </li>
-                            <li><a href="#">funny</a>
+                            <li><a href="#">aww</a>
                             </li>
-                            <li><a href="#">gaming</a>
-                            </li>
-                            <li><a href="#">askreddit</a>
-                            </li>
-                            <li><a href="#">worldnews</a>
-                            </li>
-                            <li><a href="#">news</a>
-                            </li>
+                            
+                            
+                            
+                            
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">more <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                    <li><a href="#">subreddit</a>
+                                <li><a href="#">funny</a>
+                            </li>
+                                    <li><a href="#">Gaming</a></li>
+                                    <li><a href="#">gifs</a></li>
+                                    <li><a href="#">iAmA</a></li>
+                                    <li><a href="#">mildlyinteresting</a>
                                     </li>
-                                    <li><a href="#">subreddit</a>
+                                    <li><a href="#">movies</a>
                                     </li>
-                                    <li><a href="#">subreddit</a>
+                                    <li><a href="#">pics</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li><a href="#">About</a>
@@ -150,8 +151,9 @@
                     <li><del>finish laying out posts - need to record number of comments</del></li>
                     <li><del>ajax sort - figure out why the DOM isn't changing. posts sort.</del></li>
                     <li><del>images next to text</del></li>
-                    <li>submit a link/text</li>
+                    <li><del>submit a link/text</del></li>
                     <li>Fix menu button</li>
+                    <li>Highlight sort tabs when clicked</li>
                     <li><del>upvote</del></li>
                     <li>load more posts when end is reached</li>
                     <li>open imgur in modals</li>
@@ -282,64 +284,95 @@
 
 
     <!-- submit a link modal -->
-    <div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="link-modal" tabindex="-1" role="dialog" aria-labelledby="linkModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="linkModalLabel">submit a link</h4>
                 </div>
                 <div class="modal-body">
                     <form action="" class=".form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="title-link">Title</label>
-                            <input class="form-control" type="text" placeholder="title-link" id="title">
+                            <label for="link-title">Title</label>
+                            <input class="form-control" type="text" placeholder="the title of your post" id="link-title">
                         </div>
                         <div class="form-group">
-                            <label for="url">URL</label>
-                            <input class="form-control" type="text" placeholder="url" id="url">
+                            <label for="link-url">URL</label>
+                            <input class="form-control" type="text" placeholder="url" id="link-url">
                         </div>
                         <div class="form-group">
-                            <label for="subreddit-link">Subreddit</label>
-                            <input class="form-control" type="text" placeholder="subreddit" id="subreddit-link">
+                            <label for="link-subreddit">Subreddit</label>
+                            <select id="link-subreddit" class="form-control">
+                                <option value="AdviceAnimals">AdviceAnimals</option>
+                                <option value="AnimalsBeingJerks">AnimalsBeingJerks</option>
+                                <option value="aww">aww</option>
+                                <option value="funny">funny</option>
+                                <option value="gaming">gaming</option>
+                                <option value="gifs">gifs</option>
+                                <option value="iAmA">iAmA</option>
+                                <option value="mildlyinteresting">mildlyinteresting</option>
+                                <option value="movies">movies</option>
+                                <option value="pics">pics</option>
+                                <option value="todayilearned">todayilearned</option>
+                                <option value="videos">videos</option>
+                                <option value="wtf">wtf</option>
+                                <option value=""></option>
+                            </select>
+
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" id="submit-link-button" data-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- submit a text post modal -->
-    <div class="modal fade" id="textPost-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal fade" id="textPost-modal" tabindex="-1" role="dialog" aria-labelledby="textModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+                    <h4 class="modal-title" id="textModalLabel">submit a text post</h4>
                 </div>
                 <div class="modal-body">
                     <form action="" class=".form-horizontal" role="form">
                         <div class="form-group">
-                            <label for="title-text">Title</label>
-                            <input class="form-control" type="text" placeholder="title-text" id="title">
+                            <label for="text-title">Title</label>
+                            <input class="form-control" type="text" placeholder="title" id="text-title">
                         </div>
                         <div class="form-group">
-                            <label for="text">Text</label>
-                            <input class="form-control" type="text" placeholder="text" id="text">
+                            <label for="text-url">Text</label>
+                            <textarea rows="6" class="form-control" type="text" placeholder="the text of your post" id="text-url"></textarea>
                         </div>
                         <div class="form-group">
-                            <label for="subreddit-text">Subreddit</label>
-                            <input class="form-control" type="text" placeholder="subreddit" id="subreddit-text">
+                            <label for="text-subreddit">Subreddit</label>
+                            <select id="text-subreddit" class="form-control">
+                                <option value="AdviceAnimals">AdviceAnimals</option>
+                                <option value="AnimalsBeingJerks">AnimalsBeingJerks</option>
+                                <option value="aww">aww</option>
+                                <option value="funny">funny</option>
+                                <option value="gaming">gaming</option>
+                                <option value="gifs">gifs</option>
+                                <option value="iAmA">iAmA</option>
+                                <option value="mildlyinteresting">mildlyinteresting</option>
+                                <option value="movies">movies</option>
+                                <option value="pics">pics</option>
+                                <option value="todayilearned">todayilearned</option>
+                                <option value="videos">videos</option>
+                                <option value="wtf">wtf</option>
+                                <option value=""></option>
+                            </select>
                         </div>
                     </form>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-primary" id="submit-text-button" data-dismiss="modal">Submit</button>
                 </div>
             </div>
         </div>

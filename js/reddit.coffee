@@ -1,5 +1,5 @@
-foo = null;
-
+global_sort = "top"
+global_subreddit = "all"
 
 fetchTest = (query)->
 	console.log query["subreddit"]
@@ -112,6 +112,8 @@ vote = (type, id) ->
 		when "downvote" then post.html(total-1)
 
 submitPost = (data) ->
+	console.log "submit post called"
+	console.log data
 	title = data["title"]
 	url = data["url"]
 	subreddit = data["subreddit"]
@@ -125,34 +127,39 @@ submitPost = (data) ->
 		success: (data) ->
 			console.log "submitPost success"
 			console.log data
-			fetchPosts({"sort":"top", "subreddit":"all"})
+			fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 		})	
-
-	
-
 
 
 bindTabs = ->
-	console.log 'bindTabs called'
+	# console.log 'bindTabs called'
 	$('#hot').click ->
 		$(".postrow").remove()
-		fetchPosts({"sort":"top", "subreddit":"all"})	
+		global_sort = "top"
+		global_subreddit = "all"
+		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})	
 		
 	$('#new').click ->
 		$(".postrow").remove()
-		fetchPosts({"sort":"new", "subreddit":"all"})
-		
+		global_sort = "new"
+		global_subreddit = "all"
+		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
+	
 
 	$('#controversial').click ->
 		$(".postrow").remove()
-		fetchPosts({"sort":"controversial", "subreddit":"all"})
+		global_sort = "controversial"
+		global_subreddit = "all"
+		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 	$('#top').click ->
 		$(".postrow").remove()
-		fetchPosts({"sort":"top", "subreddit":"all"})
+		global_sort = "top"
+		global_subreddit = "all"
+		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 bindArrows = ->
-	console.log "bindArrows called"
+	# console.log "bindArrows called"
 	$(".glyphicon-arrow-down").click ->
 		$(@).toggleClass("glyphicon-arrow-down-clicked")
 		id = $(@).attr('id').match('[0-9]+')[0]
@@ -164,12 +171,39 @@ bindArrows = ->
 		$(@).toggleClass("glyphicon-arrow-up-clicked")
 		id = $(@).attr('id').match('[0-9]+')[0]
 		vote("upvote", id)
-
 	return
+
+bindSubmit = ->
+	$("#submit-link-button").click ->
+		# console.log "submit link button clicked"
+		title = $("#link-title").val()
+		url = $("#link-url").val()
+		subreddit = $("#link-subreddit").val()
+		# console.log title + url + subreddit 
+		submitPost({
+			"title":title,
+			"url":url,
+			"subreddit":subreddit
+			"type":1
+			})
+
+
+	$("#submit-text-button").click ->
+		# console.log "submit text button clicked"
+		title = $("#text-title").val()
+		url = $("#text-url").val()
+		subreddit = $("#text-subreddit").val() 
+		# console.log title + url + subreddit
+		submitPost({
+			"title":title,
+			"url":url,
+			"subreddit":subreddit
+			"type":2
+			})
 
 
 $(document).ready ->
-	console.log "document ready"
 	$(".postrow").remove()
 	fetchPosts({"sort":"top", "subreddit":"all"})
 	bindTabs()
+	bindSubmit()
