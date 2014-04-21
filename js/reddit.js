@@ -55,7 +55,6 @@ fetchPosts = function(query) {
 
 displayPosts = function(data) {
   var downvote, id, post, row, subreddit, title, type, upvote, url, username, _i, _len, _results;
-  data.reverse();
   console.log("displayAll called");
   _results = [];
   for (_i = 0, _len = data.length; _i < _len; _i++) {

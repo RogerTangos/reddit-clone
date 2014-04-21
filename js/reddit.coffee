@@ -46,7 +46,6 @@ fetchPosts = (query) ->
 	});
 
 displayPosts = (data) ->
-	data.reverse()
 	console.log "displayAll called"
 	for post in data
 		id = post['id']
@@ -106,7 +105,6 @@ displayPosts = (data) ->
 		                </div>
 		            </div>
 		        </div>"
-		# $('#todo-row').after(row)
 		
 		if $(".postrow").last().length > 0
 			$(".postrow").last().after(row)
