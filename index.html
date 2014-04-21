@@ -11,18 +11,18 @@
     <link rel="shortcut icon" href="img/favicon.ico">
 
     <title>Reddit - The Front Page of the Internet</title>
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery-migrate-1.2.1.min.js"></script>
 
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Optional theme -->
-    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
 
     <!-- Latest compiled and minified JavaScript -->
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
 
     <!-- Custom styles for this template -->
     <link href="css/editor.css" rel="stylesheet">
@@ -138,8 +138,7 @@
         <div class="row" id="todo-row">
             <div class="col-md-9 col-lg-9 col-xs-9">
                 <h1>To do:</h1>
-                <h3>You are working on the "submitPosts" method in reddit.coffee</h3>
-                <ol>
+                <ol style="display:none">
                     <li>
                         <del>setup posts table</del>
                     </li>
@@ -184,6 +183,7 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#textPost-modal">Submit a text post</button>
             </div>
         </div>
+        <div class="row" id="lastpost"></div>
         <div class="row postrow">
             <div class="col-md-10 col-lg-10 col-xs-10 reddit-link">
                 <a href="http://www.bbc.com/news/health-26987653">A new treatment for hepatitis C "cured" 90% of patients with the infection in 12 weeks, scientists said: The study is a "major breakthrough" and marks a "turning point" in hepatitis C treatment, said experts</a>

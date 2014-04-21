@@ -1,6 +1,9 @@
 global_sort = "top"
 global_subreddit = "all"
-foo = null
+global_start = 0
+global_resultNum=10
+global_docHeight=0
+# foo = null
 
 fetchTest = (query)->
 	console.log query["subreddit"]
@@ -8,7 +11,10 @@ fetchTest = (query)->
 	$.ajax({
 	  type: "POST",
 	  url: 'php/test.php',
-	  data: {"subreddit": query["subreddit"], "sort": query["sort"]},
+	  data: {"subreddit": query["subreddit"], 
+	  "sort": query["sort"]
+
+	  },
 	  	# {"subreddit": order.subreddit, "sort": order.sort},
 	  success: (data)->
 	  	console.log data
@@ -18,19 +24,29 @@ fetchTest = (query)->
 
 fetchPosts = (query) ->
 	console.log "fetchPosts called"
+	if !query["start"]
+		query["start"] = 0
+	if !query["resultNum"]
+		query["resultNum"] = 10
+
 	$.ajax({
 	  type: "POST",
 	  url: 'php/retrievePosts.php',
-	  data: {"subreddit": query["subreddit"], "sort": query["sort"]},
+	  data: {
+	  	"subreddit": query["subreddit"],
+	  	"sort": query["sort"]
+	  	"start": query["start"]
+	  	"resultNum": query["resultNum"]},
 	  success: (data)->
 	  	# console.log "posts received from db"
-	  	# console.log data
+	  	console.log data
 	  	displayPosts(data)
 	  	bindArrows()
 	  dataType: 'json'
 	});
 
 displayPosts = (data) ->
+	data.reverse()
 	console.log "displayAll called"
 	for post in data
 		id = post['id']
@@ -89,9 +105,14 @@ displayPosts = (data) ->
 		                    <span class='glyphicon glyphicon-arrow-down arrow' id='downarrow-"+id+"'></span>
 		                </div>
 		            </div>
-		        </div>"	
+		        </div>"
+		# $('#todo-row').after(row)
+		
+		if $(".postrow").last().length > 0
+			$(".postrow").last().after(row)
+		else
+			$('#todo-row').after(row)
 
-		$('#todo-row').after(row)
 
 vote = (type, id) ->
 	console.log "vote called"
@@ -130,7 +151,6 @@ submitPost = (data) ->
 			console.log data
 			fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 		})	
-
 
 bindTabs = ->
 	# console.log 'bindTabs called'
@@ -215,7 +235,7 @@ bindSubmit = ->
 
 
 $(document).ready ->
-	$(".postrow").remove()
+	# $(".postrow").remove()
 	fetchPosts({"sort":"top", "subreddit":"all"})
 	bindTabs()
 	bindSubmit()
