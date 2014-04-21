@@ -19,7 +19,7 @@ $type = intval($mysqliObj->real_escape_string($_POST["type"]));
 // $type = 1;
 
 
-$subreddit = "funny";
+// $subreddit = "funny";
 
 $query1 = "SELECT id FROM subreddit WHERE subreddit='$subreddit'";
 $resultSet = $mysqliObj->query($query1, MYSQLI_STORE_RESULT);

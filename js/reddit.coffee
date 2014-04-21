@@ -2,7 +2,7 @@ global_sort = "top"
 global_subreddit = "all"
 global_start = 0
 global_resultNum=5
-# foo = null
+foo = null
 
 getDocumentHeight = ->
 	D = document
@@ -160,8 +160,9 @@ submitPost = (data) ->
 		"subreddit":subreddit, "type":type},
 		success: (data) ->
 			console.log "submitPost success"
-			console.log data
-			fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
+			# console.log data
+			$(".postrow").remove()
+			fetchPosts({"sort":global_sort, "subreddit":subreddit})
 		})	
 
 bindTabs = ->
@@ -171,6 +172,7 @@ bindTabs = ->
 		$("#sortnav>li.active").removeClass("active")
 		$(@).parent().addClass("active");
 		global_sort = "top"
+		global_start = 0;
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})	
 
 
@@ -181,6 +183,7 @@ bindTabs = ->
 		console.log @
 		$(@).parent().addClass("active");
 		global_sort = "new"
+		global_start = 0;
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 	
 
@@ -189,6 +192,7 @@ bindTabs = ->
 		$("#sortnav>li.active").removeClass("active")
 		$(@).parent().addClass("active");
 		global_sort = "controversial"
+		global_start = 0;
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 	$('#top').click ->
@@ -196,6 +200,7 @@ bindTabs = ->
 		$("#sortnav>li.active").removeClass("active")
 		$(@).parent().addClass("active");
 		global_sort = "top"
+		global_start = 0;
 		fetchPosts({"sort":global_sort, "subreddit":global_subreddit})
 
 bindArrows = ->
@@ -251,11 +256,100 @@ bindAutoScroll = ->
 				"sort":global_sort
 				"start":global_start
 				"resultNum":global_resultNum})
-			# console.log "bottom!"
+			console.log "bottom!"
+
+bindSubreddits = ->
+	# this should have been dry... but there's a deadline.
+	$("#subreddit-front").click ->
+		$('.postrow').remove();
+		$("#subreddit-menu").children().removeClass("active")
+		$("#subreddit-all").parent().addClass("active"); 
+		global_subreddit = 'all'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-all").click ->
+		$('.postrow').remove();
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'all'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-adviceAnimals").click ->
+		$('.postrow').remove();
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'adviceAnimals'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-animalsbeingjerks").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'animalsbeingjerks'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-aww").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'aww'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-funny").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'funny'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-gaming").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'gaming'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-gifs").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'gifs'
+		global_start = 0
+		fetchPosts({})	
+	$("#subreddit-iAmA").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'iAmA'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-mildlyinteresting").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'mildlyinteresting'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-movies").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'movies'
+		global_start = 0
+		fetchPosts({})
+	$("#subreddit-pics").click ->
+		$('.postrow').remove(); 
+		$("#subreddit-menu").children().removeClass("active")
+		$(@).parent().addClass("active"); 
+		global_subreddit = 'pics'
+		global_start = 0
+		fetchPosts({})
+
 
 $(document).ready ->
 	# $(".postrow").remove()
 	fetchPosts({"sort":"top", "subreddit":"all"}, -> bindAutoScroll())
 	bindTabs()
 	bindSubmit()
+	bindSubreddits()
 
