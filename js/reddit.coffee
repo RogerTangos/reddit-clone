@@ -2,6 +2,7 @@ global_sort = "top"
 global_subreddit = "all"
 global_start = 0
 global_resultNum=5
+global_title = null
 foo = null
 
 getDocumentHeight = ->
@@ -78,7 +79,7 @@ displayPosts = (data) ->
 			row = 	
 				"<div class='row postrow'>
 		            <div class='col-md-10 col-lg-10 col-xs-10 reddit-link'>
-		            	<div class='post-image-container'>
+		            	<div class='post-image-container img-rounded'>
 							<img class='post-image' src='"+url+"' alt='post image'>
 		                </div>
 		                <div class='post-text-container'>
@@ -87,9 +88,9 @@ displayPosts = (data) ->
 		                	<div></div>
 			                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>
 			                </div>
-			                <div class='details comments'>" + 
+			                <div class='details comments'> <a href='#top-nabar' data-toggle='modal' data-target='#comments-modal'> " + 
 			                Math.floor(Math.random()*100000) + "
-			                comments -></div>
+			                comments -></a></div>
 		            	</div>
 		            </div>
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
@@ -108,9 +109,10 @@ displayPosts = (data) ->
 		               "<div></div>
 		                <div class='details submission'>submitted by <a href='reddit.com/u/user'>" + username + "</a> to <a href='reddit.com/r/subreddit'>" + subreddit + "</a>
 		                </div>
-		                <div class='details comments'> " +
-		                Math.floor(Math.random()*100000) + "
-		                 comments -></div>
+		                <div class='details comments'> <a href='#top-nabar' data-toggle='modal' data-target='#comments-modal'
+		                onclick='$(\"#comment-title\").val("+title+")'> " + 
+			                Math.floor(Math.random()*100000) + "
+			                comments -></a></div>
 		            </div>
 		            <div class='col-md-2 col-lg-2 col-xs-2 '>
 		                <div class='vote'>
@@ -142,8 +144,8 @@ vote = (type, id) ->
 	post = $("#post-count-" + id)
 	total = parseFloat(post.html())
 	switch type
-		when "upvote" then post.html(total+1)
-		when "downvote" then post.html(total-1)
+		when "upvote" then post.html(total)
+		when "downvote" then post.html(total)
 
 submitPost = (data) ->
 	console.log "submit post called"
@@ -352,4 +354,6 @@ $(document).ready ->
 	bindTabs()
 	bindSubmit()
 	bindSubreddits()
+	# just for testing purposes
+	$('#comments-modal').modal('toggle');
 

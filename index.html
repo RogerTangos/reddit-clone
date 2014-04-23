@@ -87,9 +87,10 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="top-navbar">
-                        <ul id="subreddit-menu"  class="nav navbar-nav">
-                            <li  class="active"><a href="#top-navbar" id="subreddit-all">all</a></li>
-                             <li><a href="#top-navbar" id="subreddit-adviceAnimals">adviceanimals</a>
+                        <ul id="subreddit-menu" class="nav navbar-nav">
+                            <li class="active"><a href="#top-navbar" id="subreddit-all">all</a>
+                            </li>
+                            <li><a href="#top-navbar" id="subreddit-adviceAnimals">adviceanimals</a>
                             </li>
                             <li><a href="#top-navbar" id='subreddit-animalsbeingjerks'>animalsbeingjerks</a>
                             </li>
@@ -99,12 +100,14 @@
                             </li>
                             <li><a href="#top-navbar" id='subreddit-gaming'>gaming</a>
                             </li>
-                            
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">more <b class="caret"></b></a>
                                 <ul class="dropdown-menu">
-                                   <li><a href="#top-navbar" id='subreddit-gifs'>gifs</a></li>
-                                   <li><a href="#top-navbar" id='subreddit-iAmA'>iAmA</a></li>
+                                    <li><a href="#top-navbar" id='subreddit-gifs'>gifs</a>
+                                    </li>
+                                    <li><a href="#top-navbar" id='subreddit-iAmA'>iAmA</a>
+                                    </li>
                                     <li><a href="#top-navbar" id='subreddit-mildlyinteresting'>mildlyinteresting</a>
                                     </li>
                                     <li><a href="#top-navbar" id='subreddit-movies'>movies</a>
@@ -126,7 +129,7 @@
                             </div>
                             <button type="submit" class="btn btn-default">Submit</button>
                         </form>
-                        
+
                     </div>
                     <!-- /.navbar-collapse -->
                 </div>
@@ -135,31 +138,44 @@
         </div>
         <!-- /.navbar div -->
 
+        <!-- Advertisement -->
         <div class="row" id="todo-row">
             <div class="col-md-9 col-lg-9 col-xs-9">
-                <h1>To do:</h1>
+                <h1>You are making the comment title be the title of the post you clicked.</h1>
                 <ol style="display:block">
                     <li>
                         <del>submit a link/text</del>
                     </li>
-                    <li><del>Fix menu button</del></li>
-                    <li><del>Highlight sort tabs when clicked</del></li>
+                    <li>
+                        <del>Fix menu button</del>
+                    </li>
+                    <li>
+                        <del>Highlight sort tabs when clicked</del>
+                    </li>
                     <li>
                         <del>upvote</del>
                     </li>
-                    <li><del>load more posts when end is reached</del></li>
+                    <li>
+                        <del>load more posts when end is reached</del>
+                    </li>
                     <li>open imgur in modals</li>
                     <li>Comments Page</li>
-                    <li><del>Subreddit Page</del></li>
+                    <li>
+                        <del>Subreddit Page</del>
+                    </li>
                     <li>authenticate user</li>
                 </ol>
             </div>
+            <!-- /Advertisement -->
             <div class="col-md-3 col-lg-3 col-sm-6 col-xs-12" id="submission">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#link-modal">Submit a link</button>
                 <br>
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#textPost-modal">Submit a text post</button>
             </div>
         </div>
+        <!-- /buttons -->
+
+
 
 
         <div class="row footer">
@@ -323,6 +339,103 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-primary" id="submit-text-button" data-dismiss="modal">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- comments modal -->
+    <div class="modal fade" id="comments-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="comment-modal-label">Reddit...meet Oliver! He's still learning to cat...</h4>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="panel-group" id="accordion">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" id="comment-title" href="#collapseOne">
+          That reminds me of a time when I did that!!
+        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseOne" class="panel-collapse collapse in">
+                                    <div class="panel-body">
+                                        <ul class="nested-comments">
+                                            <li><div class="comment-text">can i has ༼ つ ◕_◕ ༽つ</div>
+                                                <div class="comment-detail">
+                                                    <span class='glyphicon glyphicon-arrow-up'></span>
+                                                    <span class="comment-votes">53</span>
+                                                    <span class='glyphicon glyphicon-arrow-down'></span>
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                    <span class="comment-date">April 23, 2014  // </span>
+                                                    <span class="glyphicon glyphicon-tag"></span>
+                                                    <span class="comment-username"> by Kanad</span>
+                                                </div> 
+                                            ﻿</li>
+                                            <li>Yes! But only if I can too!</li>
+                                            <ul>
+                                                <li><a href="http://popcultureperversion.files.wordpress.com/2014/01/tumblr_lu82m18jch1qcwe36o1_500.gif" </a>It's too cute for anyone to control</a>
+                                                </li>
+                                                <ul>
+                                                    <li>narf</li>
+                                                </ul>
+                                            </ul>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+          That there is a majestic kitty. +10
+        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseTwo" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nested-comments">
+                                            <li>My bush. I call him Cat.</li>
+                                            <li>So fluffy!!!</li>
+                                            <li>What a majestic beast!</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h4 class="panel-title">
+                                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          I'd love to see a wet/dry picture comparison for fuzzy pets like this.
+        </a>
+                                    </h4>
+                                </div>
+                                <div id="collapseThree" class="panel-collapse collapse">
+                                    <div class="panel-body">
+                                        <ul class="nested-comments">
+                                            <li><a href="http://i.imgur.com/Pka3V4G.jpg">wet corgi is all ears</a>
+                                            </li>
+                                            <li>We should make /r/wetdry just like /r/onoff.
+                                                <br />EDIT: Latter is NSFW.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
