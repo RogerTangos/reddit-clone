@@ -349,24 +349,24 @@ bindSubreddits = ->
 		fetchPosts({})
 
 bindReply= ->
-
-
-	replyLinks = $('.comment-edit')
+	replyLinks = $('.comment-edit').parent()
 	replyLinks.append('
-		<div class="response" style="display:hidden">
+		<div class="response" style="display:none">
             <textarea rows="6" class="form-control" type="text" placeholder="write your comment here" id="text-url"></textarea>
             <div class="response-button-row">
-                <button type="button" class="btn btn-default comment-reply-cancel">cancel</button>
-                <button type="button" class="btn btn-primary comment-reply-submit">submit</button>
+                <button type="button" class="btn btn-default btn-sm comment-reply-cancel">cancel</button>
+                <button type="button" class="btn btn-primary btn-sm comment-reply-submit">submit</button>
             </div>
         </div>')
 
-	$('.comment-edit').click (e)->
-		console.log e
-		console.log this
-		foo = e
-		bar = this
 
+
+	$('.comment-edit').click (e)->
+		replyBox = $(this).next()
+		if replyBox.is( ":hidden" )
+			replyBox.slideDown("slow")
+		else
+			replyBox.slideUp("slow")
 
 	console.log "bind reply called"
 

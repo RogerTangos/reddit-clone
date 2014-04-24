@@ -361,9 +361,9 @@ bindSubreddits = function() {
 
 bindReply = function() {
   var replyLinks;
-  replyLinks = $('.comment-edit');
+  replyLinks = $('.comment-edit').parent();
   replyLinks.append('\
-		<div class="response" style="display:hidden">\
+		<div class="response" style="display:none">\
             <textarea rows="6" class="form-control" type="text" placeholder="write your comment here" id="text-url"></textarea>\
             <div class="response-button-row">\
                 <button type="button" class="btn btn-default comment-reply-cancel">cancel</button>\
@@ -371,10 +371,13 @@ bindReply = function() {
             </div>\
         </div>');
   $('.comment-edit').click(function(e) {
-    console.log(e);
-    console.log(this);
-    foo = e;
-    return bar = this;
+    var replyBox;
+    replyBox = $(this).next();
+    if (replyBox.is(":hidden")) {
+      return replyBox.slideDown("slow");
+    } else {
+      return replyBox.slideUp("slow");
+    }
   });
   return console.log("bind reply called");
 };

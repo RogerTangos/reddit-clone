@@ -283,10 +283,10 @@ nav {
 }
 
 .response{
-    min-height: 10px;
-    min-width: 50px;
-    border: 1px solid blue;
-    padding-bottom: 35px;
+    /*min-height: 10px;*/
+    /*min-width: 50px;*/
+    /*border: 1px solid blue;*/
+    padding-bottom: 50px;
 }
 
 .response-button-row{
