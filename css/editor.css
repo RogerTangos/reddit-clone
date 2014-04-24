@@ -223,6 +223,11 @@ nav {
     list-style-type: none;
 }
 
+.nested-comments li {
+    border-left: 2px solid #d9534f;
+}
+
+
 .nested-comments li:nth-child(1) {
     border-left: 2px solid #d9534f;
 }

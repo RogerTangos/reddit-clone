@@ -364,10 +364,10 @@ bindReply = function() {
   replyLinks = $('.comment-edit').parent();
   replyLinks.append('\
 		<div class="response" style="display:none">\
-            <textarea rows="6" class="form-control" type="text" placeholder="write your comment here" id="text-url"></textarea>\
+            <textarea rows="6" class="form-control" type="text" placeholder="Write your comment here." id="text-url"></textarea>\
             <div class="response-button-row">\
-                <button type="button" class="btn btn-default comment-reply-cancel">cancel</button>\
-                <button type="button" class="btn btn-primary comment-reply-submit">submit</button>\
+                <button type="button" class="btn btn-default btn-sm comment-reply-cancel">cancel</button>\
+                <button type="button" class="btn btn-primary btn-sm comment-reply-submit">submit</button>\
             </div>\
         </div>');
   $('.comment-edit').click(function(e) {
@@ -378,6 +378,36 @@ bindReply = function() {
     } else {
       return replyBox.slideUp("slow");
     }
+  });
+  $('.comment-reply-cancel').click(function() {
+    return $(this).parent().parent().slideUp("slow");
+  });
+  $('.comment-reply-submit').click(function() {
+    var text, ul;
+    text = $(this).parent().prev().val();
+    ul = $(this).parent().parent().parent().parent().parent();
+    ul.append('\
+			\
+			   	<li>\
+				   	<div class="comment-text">\
+		                ' + text + '\
+		            </div>\
+		            <div class="comment-detail">\
+		                <span class="glyphicon glyphicon-arrow-up"></span>\
+		                <span class="comment-votes">0</span>\
+		                <span class="glyphicon glyphicon-arrow-down"></span>\
+		                <span class="glyphicon glyphicon-calendar comment-calendar"></span>\
+		                <span class="comment-date">April 25, 2014</span>\
+		                <span class="glyphicon glyphicon-tag comment-tag"></span>\
+		                <span class="comment-username">by anon</span>\
+		                <span class="comment-edit">\
+		                    <span class="glyphicon glyphicon-edit"></span>\
+		                    <span class="reply-link">reply</span>\
+		                </span>\
+		            </div>\
+	            </li>\
+			');
+    return $(this).parent().parent().slideUp("slow");
   });
   return console.log("bind reply called");
 };
