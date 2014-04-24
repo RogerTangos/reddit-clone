@@ -4,6 +4,7 @@ global_start = 0
 global_resultNum=5
 global_title = null
 foo = null
+bar = null
 
 getDocumentHeight = ->
 	D = document
@@ -348,16 +349,23 @@ bindSubreddits = ->
 		fetchPosts({})
 
 bindReply= ->
+
+
 	replyLinks = $('.comment-edit')
 	replyLinks.append('
-		<div class="response" style="display:none">
-			<textarea rows="6" class="form-control" type="text" 
-				placeholder="write your comment here" id="text-url"></textarea>
-		</div>')
+		<div class="response" style="display:hidden">
+            <textarea rows="6" class="form-control" type="text" placeholder="write your comment here" id="text-url"></textarea>
+            <div class="response-button-row">
+                <button type="button" class="btn btn-default comment-reply-cancel">cancel</button>
+                <button type="button" class="btn btn-primary comment-reply-submit">submit</button>
+            </div>
+        </div>')
 
 	$('.comment-edit').click (e)->
 		console.log e
+		console.log this
 		foo = e
+		bar = this
 
 
 	console.log "bind reply called"
@@ -373,5 +381,5 @@ $(document).ready ->
 	bindReply()
 	# just for testing purposes
 	$('#comments-modal').modal('toggle');
-	$('.response').slideDown("slow");
+	# $('.response').slideDown("slow");
 

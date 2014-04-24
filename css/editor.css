@@ -286,6 +286,15 @@ nav {
     min-height: 10px;
     min-width: 50px;
     border: 1px solid blue;
+    padding-bottom: 35px;
+}
+
+.response-button-row{
+    float:right;
+}
+
+.response-button-row:after{
+    clear:both;
 }
 
 @media all and (max-width: 600px) {
