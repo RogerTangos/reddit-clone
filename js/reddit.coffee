@@ -398,7 +398,7 @@ bindReply= ->
 		
 
 
-	console.log "bind reply called"
+	# console.log "bind reply called"
 
 
 
@@ -410,6 +410,6 @@ $(document).ready ->
 	bindSubreddits()
 	bindReply()
 	# just for testing purposes
-	$('#comments-modal').modal('toggle');
+	# $('#comments-modal').modal('toggle');
 	# $('.response').slideDown("slow");
 

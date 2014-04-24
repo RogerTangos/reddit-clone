@@ -382,7 +382,7 @@ bindReply = function() {
   $('.comment-reply-cancel').click(function() {
     return $(this).parent().parent().slideUp("slow");
   });
-  $('.comment-reply-submit').click(function() {
+  return $('.comment-reply-submit').click(function() {
     var text, ul;
     text = $(this).parent().prev().val();
     ul = $(this).parent().parent().parent().parent().parent();
@@ -409,7 +409,6 @@ bindReply = function() {
 			');
     return $(this).parent().parent().slideUp("slow");
   });
-  return console.log("bind reply called");
 };
 
 $(document).ready(function() {
@@ -422,6 +421,5 @@ $(document).ready(function() {
   bindTabs();
   bindSubmit();
   bindSubreddits();
-  bindReply();
-  return $('#comments-modal').modal('toggle');
+  return bindReply();
 });

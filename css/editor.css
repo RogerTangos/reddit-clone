@@ -302,6 +302,16 @@ nav {
     clear:both;
 }
 
+.myrevenue{
+    font-size: 75%;
+    text-align:justify;
+    border: 4px groove brown;
+    min-height: 100px;
+    font-family: "Bitstream Charter","Hoefler Text","Palatino Linotype","Book Antiqua",Palatino,georgia,garamond,FreeSerif,serif;
+    background-color: #FFFDF8;
+    margin-bottom: 10px;
+}
+
 @media all and (max-width: 600px) {
   #sortnav {
     margin-top: 10px;
