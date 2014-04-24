@@ -31,7 +31,7 @@ fetchTest = (query)->
 	});
 
 fetchPosts = (query, fun) ->
-	console.log "fetchPosts called"
+	# console.log "fetchPosts called"
 	if !query["start"]
 		query["start"] = 0
 	if !query["resultNum"]
@@ -62,7 +62,7 @@ fetchPosts = (query, fun) ->
 	});
 
 displayPosts = (data) ->
-	console.log "displayAll called"
+	# console.log "displayAll called"
 	for post in data
 		id = post['id']
 		title = post['title']
@@ -249,7 +249,7 @@ bindSubmit = ->
 			})
 
 bindAutoScroll = ->
-	console.log "autoscroll binding now"
+	# console.log "autoscroll binding now"
 	$(window).scroll ->
 		if $(window).scrollTop() + $(window).height() == getDocumentHeight()
 			global_start += 5
@@ -347,6 +347,22 @@ bindSubreddits = ->
 		global_start = 0
 		fetchPosts({})
 
+bindReply= ->
+	replyLinks = $('.comment-edit')
+	replyLinks.append('
+		<div class="response" style="display:none">
+			<textarea rows="6" class="form-control" type="text" 
+				placeholder="write your comment here" id="text-url"></textarea>
+		</div>')
+
+	$('.comment-edit').click (e)->
+		console.log e
+		foo = e
+
+
+	console.log "bind reply called"
+
+
 
 $(document).ready ->
 	# $(".postrow").remove()
@@ -354,6 +370,8 @@ $(document).ready ->
 	bindTabs()
 	bindSubmit()
 	bindSubreddits()
+	bindReply()
 	# just for testing purposes
 	$('#comments-modal').modal('toggle');
+	$('.response').slideDown("slow");
 

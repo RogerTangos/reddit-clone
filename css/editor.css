@@ -193,6 +193,21 @@ nav {
     float:left;
 }
 
+.comment-image-container{
+    width: 90px;
+    height: 90px;
+    overflow: hidden;
+    margin-right:5px;
+    display:inline-block;
+    /*float:left;*/
+   border-radius:5px;
+   /*position:absolute; */
+}
+
+.comment-modal-text{
+    display:inline-block;
+}
+
 .post-image {
     width: 90px;
     /*height: 100%;*/
@@ -233,7 +248,44 @@ nav {
 }
 
 .comment-detail * {
+    margin-top: .5em;
     color: gray;
+}
+
+.comment-calendar {
+    margin-left: 1.5em;
+}
+
+.comment-username {
+    margin-left: .1em;
+}
+
+
+.comment-tag{
+    margin-left: 1.5em;
+    -moz-transform: rotate(90deg);
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1)
+}
+
+.comment-username{
+    /*font-style: italic;*/
+}
+
+.comment-edit{
+    margin-left:20px;
+}
+
+.comment-edit:hover{
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.response{
+    min-height: 10px;
+    min-width: 50px;
+    border: 1px solid blue;
 }
 
 @media all and (max-width: 600px) {
